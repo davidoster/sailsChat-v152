@@ -8,7 +8,7 @@
  * and `endTag`) determine the insertion points.
  *
  * For more information, see:
- *   http://sailsjs.com/anatomy/tasks/config/sails-linker-js
+ *   https://sailsjs.com/anatomy/tasks/config/sails-linker.js
  *
  */
 module.exports = function(grunt) {
@@ -42,10 +42,14 @@ module.exports = function(grunt) {
         endTag: '<!--SCRIPTS END-->',
         fileTmpl: '<script src="%s"></script>',
         appRoot: '.tmp/public',
-        relative: true
+        // relative: true
+        // ^^ Uncomment this if compiling assets for use in PhoneGap, CDN, etc.
+        //    (but be note that this can break custom font URLs)
       },
       files: {
         '.tmp/public/**/*.html': require('../pipeline').jsFilesToInject,
+        'views/**/*.html': require('../pipeline').jsFilesToInject,
+        'views/**/*.ejs': require('../pipeline').jsFilesToInject
       }
     },
 
@@ -69,10 +73,14 @@ module.exports = function(grunt) {
         endTag: '<!--SCRIPTS END-->',
         fileTmpl: '<script src="%s"></script>',
         appRoot: '.tmp/public',
-        relative: true
+        // relative: true
+        // ^^ Uncomment this if compiling assets for use in PhoneGap, CDN, etc.
+        //    (but be note that this can break custom font URLs)
       },
       files: {
-        '.tmp/public/**/*.html': ['.tmp/public/min/production.min.js'],
+        '.tmp/public/**/*.html': ['.tmp/public/dist/*.js'],
+        'views/**/*.html': ['.tmp/public/dist/*.js'],
+        'views/**/*.ejs': ['.tmp/public/dist/*.js']
       }
     },
 
@@ -104,11 +112,15 @@ module.exports = function(grunt) {
         endTag: '<!--STYLES END-->',
         fileTmpl: '<link rel="stylesheet" href="%s">',
         appRoot: '.tmp/public',
-        relative: true
+        // relative: true
+        // ^^ Uncomment this if compiling assets for use in PhoneGap, CDN, etc.
+        //    (but be note that this can break custom font URLs)
       },
 
       files: {
         '.tmp/public/**/*.html': require('../pipeline').cssFilesToInject,
+        'views/**/*.html': require('../pipeline').cssFilesToInject,
+        'views/**/*.ejs': require('../pipeline').cssFilesToInject
       }
     },
 
@@ -132,43 +144,14 @@ module.exports = function(grunt) {
         endTag: '<!--STYLES END-->',
         fileTmpl: '<link rel="stylesheet" href="%s">',
         appRoot: '.tmp/public',
-        relative: true
+        // relative: true
+        // ^^ Uncomment this if compiling assets for use in PhoneGap, CDN, etc.
+        //    (but be note that this can break custom font URLs)
       },
       files: {
-        '.tmp/public/index.html': ['.tmp/public/min/production.min.css'],
-      }
-    },
-
-
-    //  ╔═╗╦═╗╔═╗╔═╗╔═╗╔╦╗╔═╗╦╦  ╔═╗╔╦╗  ╦ ╦╔╦╗╔╦╗╦    ╔╦╗╔═╗╔╦╗╔═╗╦  ╔═╗╔╦╗╔═╗╔═╗
-    //  ╠═╝╠╦╝║╣ ║  ║ ║║║║╠═╝║║  ║╣  ║║  ╠═╣ ║ ║║║║     ║ ║╣ ║║║╠═╝║  ╠═╣ ║ ║╣ ╚═╗
-    //  ╩  ╩╚═╚═╝╚═╝╚═╝╩ ╩╩  ╩╩═╝╚═╝═╩╝  ╩ ╩ ╩ ╩ ╩╩═╝   ╩ ╚═╝╩ ╩╩  ╩═╝╩ ╩ ╩ ╚═╝╚═╝
-    //  ┌─    ┌─┐┬  ┬┌─┐┌┐┌┌┬┐  ┌─┐┬┌┬┐┌─┐  ┬  ┌─┐┌┬┐┌─┐┌─┐┬ ┬  ┌┬┐┌─┐┌┬┐┌─┐┬  ┌─┐┌┬┐┌─┐┌─┐    ─┐
-    //  │───  │  │  │├┤ │││ │───└─┐│ ││├┤   │  │ │ ││├─┤└─┐├─┤   │ ├┤ │││├─┘│  ├─┤ │ ├┤ └─┐  ───│
-    //  └─    └─┘┴─┘┴└─┘┘└┘ ┴   └─┘┴─┴┘└─┘  ┴─┘└─┘─┴┘┴ ┴└─┘┴ ┴   ┴ └─┘┴ ┴┴  ┴─┘┴ ┴ ┴ └─┘└─┘    ─┘
-    clientSideTemplates: {
-      options: {
-        startTag: '<!--TEMPLATES-->',
-        endTag: '<!--TEMPLATES END-->',
-        fileTmpl: '<script type="text/javascript" src="%s"></script>',
-        appRoot: '.tmp/public'
-      },
-      files: {
-        '.tmp/public/index.html': ['.tmp/public/jst.js'],
-        'views/**/*.html': ['.tmp/public/jst.js'],
-        'views/**/*.ejs': ['.tmp/public/jst.js']
-      }
-    },
-    clientSideTemplatesBuild: {
-      options: {
-        startTag: '<!--TEMPLATES-->',
-        endTag: '<!--TEMPLATES END-->',
-        fileTmpl: '<script type="text/javascript" src="%s"></script>',
-        appRoot: '.tmp/public',
-        relative: true
-      },
-      files: {
-        '.tmp/public/index.html': ['.tmp/public/jst.js'],
+        '.tmp/public/index.html': ['.tmp/public/dist/*.css'],
+        'views/**/*.html': ['.tmp/public/dist/*.css'],
+        'views/**/*.ejs': ['.tmp/public/dist/*.css']
       }
     },
 

@@ -4,14 +4,12 @@
  * ---------------------------------------------------------------
  *
  * For more information see:
- *   http://sailsjs.com/anatomy/tasks/register/sync-assets-js
+ *   https://sailsjs.com/anatomy/tasks/register/sync-assets.js
  *
  */
 module.exports = function(grunt) {
   grunt.registerTask('syncAssets', [
-    'jst:dev',
     'less:dev',
     'sync:dev',
-    'coffee:dev'
   ]);
 };

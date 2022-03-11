@@ -1,31 +1,29 @@
 /**
- * `tasks/config/coffee`
+ * `tasks/config/babel`
  *
  * ---------------------------------------------------------------
  *
- * Compile CoffeeScript files located in `assets/js` into Javascript
- * and generate new `.js` files in `.tmp/public/js`.
+ * Transpile >=ES6 code for broader browser compatibility.
  *
  * For more information, see:
- *   http://sailsjs.com/anatomy/tasks/config/coffee-js
+ *   https://sailsjs.com/anatomy/tasks/config/babel.js
  *
  */
 module.exports = function(grunt) {
 
-  grunt.config.set('coffee', {
-    dev: {
+  grunt.config.set('babel', {
+    dist: {
       options: {
-        bare: true,
-        sourceMap: true,
-        sourceRoot: './'
+        presets: [require('sails-hook-grunt/accessible/babel-preset-env')]
       },
-      files: [{
-        expand: true,
-        cwd: 'assets/js/',
-        src: ['**/*.coffee'],
-        dest: '.tmp/public/js/',
-        ext: '.js'
-      }]
+      files: [
+        {
+          expand: true,
+          cwd: '.tmp/public',
+          src: ['js/**/*.js'],
+          dest: '.tmp/public'
+        }
+      ]
     }
   });
 
@@ -41,7 +39,7 @@ module.exports = function(grunt) {
   //
   // 1. Install it as a local dependency of your Sails app:
   //    ```
-  //    $ npm install grunt-contrib-coffee --save-dev --save-exact
+  //    $ npm install grunt-babel --save-dev --save-exact
   //    ```
   //
   //
@@ -49,7 +47,7 @@ module.exports = function(grunt) {
   //
   // ```
   // // Load Grunt plugin from the node_modules/ folder.
-  // grunt.loadNpmTasks('grunt-contrib-coffee');
+  // grunt.loadNpmTasks('grunt-babel');
   // ```
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
