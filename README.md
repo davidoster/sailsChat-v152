@@ -1,5 +1,5 @@
-# sailsChat 1.0
-
+# sailsChat 1.5.2 - UPDATED
+# UPDATED TO VERSION sails 1.5.2
 An example of using the built-in PubSub features of Sails to build a simple realtime chat.  See [the accompanying tutorial video](https://www.youtube.com/watch?v=6KOBdsYlVnQ) to learn more!
 
 
